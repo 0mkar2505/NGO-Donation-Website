@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { Menu, X, HeartHandshake } from "lucide-react";
+import { Menu, X } from "lucide-react";
 
 const links = [
   { label: "About", href: "/#about" },
@@ -32,9 +32,11 @@ export default function Navbar() {
     >
       <nav className="container-px flex items-center justify-between py-4">
         <Link to="/" className="flex items-center gap-2">
-          <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-brand-500 text-white">
-            <HeartHandshake className="h-5 w-5" />
-          </span>
+          <img
+            src="/images/Logo.png"
+            alt="Fight Malnutrition India logo"
+            className="h-9 w-auto rounded-md"
+          />
           <span className="font-display text-lg font-extrabold tracking-tight text-ink">
             Fight Malnutrition
           </span>
@@ -55,12 +57,6 @@ export default function Navbar() {
             className="rounded-full bg-brand-500 px-5 py-2 text-sm font-semibold text-white shadow-sm transition hover:bg-brand-600"
           >
             Donate Now
-          </Link>
-          <Link
-            to="/admin"
-            className="text-xs font-medium text-stone-400 transition hover:text-stone-600"
-          >
-            Admin
           </Link>
         </div>
 
