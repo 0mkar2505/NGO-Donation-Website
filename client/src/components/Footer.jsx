@@ -28,6 +28,9 @@ export default function Footer() {
             <li><a href="/#causes" className="hover:text-brand-300">Causes</a></li>
             <li><a href="/#programs" className="hover:text-brand-300">Programs</a></li>
             <li><Link to="/donate" className="hover:text-brand-300">Donate</Link></li>
+            <li><Link to="/team" className="hover:text-brand-300">Our Team</Link></li>
+            <li><Link to="/reports" className="hover:text-brand-300">Reports</Link></li>
+            <li><Link to="/faq" className="hover:text-brand-300">FAQ</Link></li>
             <li><Link to="/privacy-policy" className="hover:text-brand-300">Privacy Policy</Link></li>
             <li><Link to="/terms" className="hover:text-brand-300">Terms</Link></li>
           </ul>
@@ -43,7 +46,21 @@ export default function Footer() {
         </div>
       </div>
       <div className="border-t border-white/10 py-5 text-center text-xs text-stone-500">
-        © {new Date().getFullYear()} Fight Malnutrition India. All Rights Reserved.
+        <p className="space-x-2">
+          <span>Registered NGO | Reg. No: [XXXXX000X]</span>
+          <span>·</span>
+          <span>80G &amp; 12A Certified</span>
+          <span>·</span>
+          <span>PAN: [XXXXXXXXXX]</span>
+          <span>·</span>
+          <span>CSR-1 Registered</span>
+        </p>
+        <p className="mt-1 text-stone-600">
+          Donations eligible for tax exemption under Section 80G, Income Tax Act.
+        </p>
+        <p className="mt-2">
+          © {new Date().getFullYear()} Fight Malnutrition India. All Rights Reserved.
+        </p>
       </div>
     </footer>
   );

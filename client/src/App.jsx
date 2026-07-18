@@ -6,6 +6,9 @@ import Donate from "./pages/Donate.jsx";
 import Admin from "./pages/Admin.jsx";
 import PrivacyPolicy from "./pages/PrivacyPolicy.jsx";
 import Terms from "./pages/Terms.jsx";
+import Team from "./pages/Team.jsx";
+import Reports from "./pages/Reports.jsx";
+import FAQ from "./pages/FAQ.jsx";
 
 export default function App() {
   return (
@@ -18,6 +21,9 @@ export default function App() {
           <Route path="/admin" element={<Admin />} />
           <Route path="/privacy-policy" element={<PrivacyPolicy />} />
           <Route path="/terms" element={<Terms />} />
+          <Route path="/team" element={<Team />} />
+          <Route path="/reports" element={<Reports />} />
+          <Route path="/faq" element={<FAQ />} />
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
       </main>
