@@ -16,9 +16,9 @@ const authHeader = () => ({
 });
 
 export default function Admin() {
-  const [token, setToken] = useState(
-    () => localStorage.getItem("adminToken") || ""
-  );
+  const [token, setToken] = useState("");
+  const [authed, setAuthed] = useState(false);
+  const [verifying, setVerifying] = useState(true);
   const [creds, setCreds] = useState({ username: "", password: "" });
   const [donations, setDonations] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -54,12 +54,35 @@ export default function Admin() {
     }
   };
 
+  const verifyToken = async (tok) => {
+    try {
+      await api("/admin/analytics", { headers: { Authorization: `Bearer ${tok}` } });
+      setToken(tok);
+      setAuthed(true);
+      return true;
+    } catch {
+      localStorage.removeItem("adminToken");
+      setToken("");
+      setAuthed(false);
+      return false;
+    }
+  };
+
   useEffect(() => {
-    if (token) {
+    const stored = localStorage.getItem("adminToken");
+    if (stored) {
+      verifyToken(stored).finally(() => setVerifying(false));
+    } else {
+      setVerifying(false);
+    }
+  }, []);
+
+  useEffect(() => {
+    if (authed) {
       loadDonations();
       loadAnalytics();
     }
-  }, [token, page, search]);
+  }, [authed, page, search]);
 
   const login = async (e) => {
     e.preventDefault();
@@ -71,6 +94,7 @@ export default function Admin() {
       });
       localStorage.setItem("adminToken", res.token);
       setToken(res.token);
+      setAuthed(true);
       setCreds({ username: "", password: "" });
     } catch (err) {
       setError(err.message);
@@ -80,7 +104,9 @@ export default function Admin() {
   const logout = () => {
     localStorage.removeItem("adminToken");
     setToken("");
+    setAuthed(false);
     setDonations([]);
+    setAnalytics(null);
   };
 
   const remove = async (id) => {
@@ -114,7 +140,15 @@ export default function Admin() {
     }
   };
 
-  if (!token) {
+  if (verifying) {
+    return (
+      <div className="container-px flex min-h-[70vh] items-center justify-center py-16">
+        <Loader2 className="h-6 w-6 animate-spin text-stone-400" />
+      </div>
+    );
+  }
+
+  if (!authed) {
     return (
       <div className="container-px flex min-h-[70vh] items-center justify-center py-16">
         <form
