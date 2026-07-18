@@ -1,8 +1,7 @@
 import { Link } from "react-router-dom";
 import { Heart, ArrowRight, Calendar, Utensils, Map, HeartHandshake } from "lucide-react";
 import Button from "../components/Button.jsx";
-import ProgramsCarousel from "../components/ProgramsCarousel.jsx";
-import { stats, causes, testimonials } from "../data/content.js";
+import { stats, testimonials } from "../data/content.js";
 
 const iconMap = { calendar: Calendar, utensils: Utensils, map: Map, heart: HeartHandshake };
 
@@ -31,9 +30,9 @@ export default function Home() {
                   Donate Now <ArrowRight className="h-4 w-4" />
                 </Button>
               </Link>
-              <a href="#programs">
+              <Link to="/programs">
                 <Button variant="outline">Explore Programs</Button>
-              </a>
+              </Link>
             </div>
           </div>
 
@@ -70,90 +69,13 @@ export default function Home() {
             return (
               <div key={s.label} className="text-center">
                 <Icon className="mx-auto h-7 w-7 text-brand-400" />
-                <p className="mt-3 font-display text-3xl font-extrabold">{s.value}</p>
+                <p className="mt-3 font-display text-3xl font-extrabold">
+                  {s.value}
+                </p>
                 <p className="mt-1 text-sm text-stone-400">{s.label}</p>
               </div>
             );
           })}
-        </div>
-      </section>
-
-      {/* ABOUT */}
-      <section id="about" className="container-px scroll-mt-24 py-20">
-        <div className="grid items-center gap-12 lg:grid-cols-2">
-          <div>
-            <h2 className="font-display text-3xl font-bold text-ink sm:text-4xl">
-              About Us
-            </h2>
-            <p className="mt-4 leading-relaxed text-stone-600">
-              We are a non-profit fighting malnutrition by providing nutritious
-              food, better healthcare, child development programs, and family
-              education across India.
-            </p>
-            <ul className="mt-6 space-y-3">
-              {[
-                "Nutritious food for underprivileged communities",
-                "Better healthcare & child development",
-                "Empowering families through education",
-                "Serving communities across India since 1990",
-              ].map((item) => (
-                <li key={item} className="flex items-start gap-3 text-stone-700">
-                  <span className="mt-1 text-brand-500">✓</span>
-                  {item}
-                </li>
-              ))}
-            </ul>
-          </div>
-          <img
-            src="/images/AboutUs.jpg"
-            alt="Helping hands"
-            className="w-full rounded-3xl object-cover shadow-md"
-          />
-        </div>
-      </section>
-
-      {/* CAUSES */}
-      <section id="causes" className="scroll-mt-24 bg-stone-100 py-20">
-        <div className="container-px">
-          <div className="mx-auto max-w-2xl text-center">
-            <h2 className="font-display text-3xl font-bold text-ink sm:text-4xl">
-              Causes of Malnutrition
-            </h2>
-            <p className="mt-3 text-stone-600">
-              Understanding the root causes helps us target solutions that last.
-            </p>
-          </div>
-          <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-            {causes.map((c, i) => (
-              <div
-                key={c.title}
-                className="rounded-2xl border border-stone-200 bg-white p-6 shadow-sm transition hover:-translate-y-1 hover:shadow-md"
-              >
-                <span className="font-display text-2xl font-bold text-brand-200">
-                  0{i + 1}
-                </span>
-                <h3 className="mt-2 font-semibold text-ink">{c.title}</h3>
-                <p className="mt-2 text-sm leading-relaxed text-stone-600">
-                  {c.text}
-                </p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* PROGRAMS */}
-      <section id="programs" className="container-px scroll-mt-24 py-20">
-        <div className="mx-auto max-w-2xl text-center">
-          <h2 className="font-display text-3xl font-bold text-ink sm:text-4xl">
-            Our Programs
-          </h2>
-          <p className="mt-3 text-stone-600">
-            Targeted, measurable interventions across the country.
-          </p>
-        </div>
-        <div className="mt-12">
-          <ProgramsCarousel />
         </div>
       </section>
 
@@ -185,7 +107,7 @@ export default function Home() {
       </section>
 
       {/* DONATE CTA */}
-      <section id="donate-cta" className="container-px py-20">
+      <section className="container-px py-20">
         <div className="overflow-hidden rounded-3xl bg-brand-500 px-8 py-14 text-center text-white shadow-lg sm:px-16">
           <h2 className="font-display text-3xl font-bold sm:text-4xl">
             Make a difference today
@@ -195,19 +117,13 @@ export default function Home() {
             Every rupee counts.
           </p>
           <Link to="/donate" className="mt-8 inline-block">
-            <Button variant="outline" className="border-white bg-white text-brand-600 hover:bg-brand-50">
+            <Button
+              variant="outline"
+              className="border-white bg-white text-brand-600 hover:bg-brand-50"
+            >
               Donate Now <ArrowRight className="h-4 w-4" />
             </Button>
           </Link>
-        </div>
-      </section>
-
-      {/* CONTACT */}
-      <section id="contact" className="scroll-mt-24 border-t border-stone-200 py-16">
-        <div className="container-px text-center">
-          <h2 className="font-display text-2xl font-bold text-ink">Contact Us</h2>
-          <p className="mt-3 text-stone-600">info@fightmalnutritionindia.org</p>
-          <p className="text-stone-600">+91 98765 43210</p>
         </div>
       </section>
     </div>

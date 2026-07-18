@@ -3,11 +3,10 @@ import { Link, useLocation } from "react-router-dom";
 import { Menu, X } from "lucide-react";
 
 const links = [
-  { label: "About", href: "/#about" },
-  { label: "Causes", href: "/#causes" },
-  { label: "Programs", href: "/#programs" },
-  { label: "Team", href: "/team" },
-  { label: "Contact", href: "/#contact" },
+  { label: "About", to: "/about" },
+  { label: "Programs", to: "/programs" },
+  { label: "Team", to: "/team" },
+  { label: "Contact", to: "/contact" },
 ];
 
 export default function Navbar() {
@@ -44,13 +43,13 @@ export default function Navbar() {
 
         <div className="hidden items-center gap-8 md:flex">
           {links.map((l) => (
-            <a
+            <Link
               key={l.label}
-              href={l.href}
+              to={l.to}
               className="text-sm font-medium text-stone-600 transition hover:text-brand-600"
             >
               {l.label}
-            </a>
+            </Link>
           ))}
           <Link
             to="/donate"
@@ -73,14 +72,14 @@ export default function Navbar() {
         <div className="border-t border-stone-100 bg-white px-5 py-4 md:hidden">
           <div className="flex flex-col gap-3">
             {links.map((l) => (
-              <a
+              <Link
                 key={l.label}
-                href={l.href}
+                to={l.to}
                 onClick={() => setOpen(false)}
                 className="text-sm font-medium text-stone-700"
               >
                 {l.label}
-              </a>
+              </Link>
             ))}
             <Link
               to="/donate"

@@ -9,6 +9,11 @@ import Terms from "./pages/Terms.jsx";
 import Team from "./pages/Team.jsx";
 import Reports from "./pages/Reports.jsx";
 import FAQ from "./pages/FAQ.jsx";
+import About from "./pages/About.jsx";
+import Causes from "./pages/Causes.jsx";
+import Programs from "./pages/Programs.jsx";
+import Contact from "./pages/Contact.jsx";
+import Testimonials from "./pages/Testimonials.jsx";
 
 export default function App() {
   return (
@@ -19,6 +24,11 @@ export default function App() {
           <Route path="/" element={<Home />} />
           <Route path="/donate" element={<Donate />} />
           <Route path="/admin" element={<Admin />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/causes" element={<Causes />} />
+          <Route path="/programs" element={<Programs />} />
+          <Route path="/contact" element={<Contact />} />
+          <Route path="/testimonials" element={<Testimonials />} />
           <Route path="/privacy-policy" element={<PrivacyPolicy />} />
           <Route path="/terms" element={<Terms />} />
           <Route path="/team" element={<Team />} />

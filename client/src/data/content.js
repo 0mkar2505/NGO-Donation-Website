@@ -1,3 +1,41 @@
+export const about = {
+  intro:
+    "We are a non-profit fighting malnutrition by providing nutritious food, better healthcare, child development programs, and family education across India.",
+  highlights: [
+    "Nutritious food for underprivileged communities",
+    "Better healthcare & child development",
+    "Empowering families through education",
+    "Serving communities across India since 1990",
+  ],
+  mission:
+    "Our mission is a India where no child is held back by hunger — where every plate is full, every mother is nourished, and every community has the knowledge to thrive.",
+  story: [
+    "Founded in 1990 by a small group of doctors and educators, we began with a single community kitchen in a rural district. Today we operate nutrition programs, maternal care initiatives, and sanitation drives across thousands of villages.",
+    "We measure success not in meals alone, but in healthier birth weights, taller children, and communities that can sustain their own wellbeing.",
+  ],
+  values: [
+    { title: "Transparency", text: "92% of funds go directly to field programs, with published reports." },
+    { title: "Community-led", text: "We work with local leaders so change outlasts our presence." },
+    { title: "Evidence-based", text: "Every program is tracked with clear, measurable outcomes." },
+  ],
+};
+
+export const contact = {
+  email: "info@fightmalnutritionindia.org",
+  phone: "+91 98765 43210",
+  address: "Fight Malnutrition India, Community Office, New Delhi, India",
+  hours: "Mon–Sat, 9:00 AM – 6:00 PM IST",
+};
+
+export const gallery = [
+  { src: "/images/gallery/gallery-1.jpg", caption: "Community kitchen serving hot meals" },
+  { src: "/images/gallery/gallery-2.jpg", caption: "Maternal nutrition session" },
+  { src: "/images/gallery/gallery-3.jpg", caption: "Children at a feeding center" },
+  { src: "/images/gallery/gallery-4.jpg", caption: "Water purification drive" },
+  { src: "/images/gallery/gallery-5.jpg", caption: "Volunteers distributing ration kits" },
+  { src: "/images/gallery/gallery-6.jpg", caption: "Health worker training" },
+];
+
 export const programs = [
   {
     title: "Nourish India Program",
