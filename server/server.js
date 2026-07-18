@@ -2,6 +2,9 @@ const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
 const path = require("path");
+const bcrypt = require("bcryptjs");
+const jwt = require("jsonwebtoken");
+const rateLimit = require("express-rate-limit");
 require("dotenv").config();
 
 const app = express();
@@ -33,7 +36,32 @@ mongoose.connect(process.env.MONGO_URI)
     .then(() => console.log("Connected to MongoDB"))
     .catch(err => console.error("MongoDB connection failed:", err.message));
 
-app.post("/donate", async (req, res) => {
+const loginLimiter = rateLimit({
+    windowMs: 15 * 60 * 1000,
+    max: 5,
+    message: { error: "Too many login attempts. Try again later." }
+});
+
+const donateLimiter = rateLimit({
+    windowMs: 60 * 60 * 1000,
+    max: 10,
+    message: { error: "Too many donation attempts. Try again later." }
+});
+
+function authenticateAdmin(req, res, next) {
+    const token = req.headers.authorization?.split(" ")[1];
+    if (!token) {
+        return res.status(401).json({ error: "Unauthorized" });
+    }
+    try {
+        jwt.verify(token, process.env.JWT_SECRET);
+        next();
+    } catch {
+        res.status(401).json({ error: "Unauthorized" });
+    }
+}
+
+app.post("/donate", donateLimiter, async (req, res) => {
     const { name, email, amount } = req.body;
     if (!name || !email || !amount) {
         return res.status(400).json({ error: "All fields are required" });
@@ -59,21 +87,17 @@ app.get("/donations", async (req, res) => {
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
 
-const ADMIN_USER = "admin";
-const ADMIN_PASS = "password";
-
-function authenticateAdmin(req, res, next) {
-    const authHeader = req.headers.authorization;
-    if (!authHeader || authHeader !== "Bearer admin-token") {
-        return res.status(403).json({ error: "Unauthorized access" });
-    }
-    next();
-}
-
-app.post("/admin/login", (req, res) => {
+app.post("/admin/login", loginLimiter, async (req, res) => {
     const { username, password } = req.body;
-    if (username === ADMIN_USER && password === ADMIN_PASS) {
-        res.json({ message: "Login successful", token: "admin-token" });
+    const validUser = username === process.env.ADMIN_USERNAME;
+    const validPass = process.env.ADMIN_PASSWORD_HASH
+        ? await bcrypt.compare(password || "", process.env.ADMIN_PASSWORD_HASH)
+        : false;
+    if (validUser && validPass) {
+        const token = jwt.sign({ role: "admin" }, process.env.JWT_SECRET, {
+            expiresIn: "2h"
+        });
+        res.json({ message: "Login successful", token });
     } else {
         res.status(401).json({ error: "Invalid credentials" });
     }
