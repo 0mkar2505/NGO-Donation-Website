@@ -23,7 +23,7 @@ export default function Footer() {
 
         <div>
           <h4 className="text-sm font-semibold text-white">Explore</h4>
-          <ul className="mt-4 space-y-2 text-sm">
+          <ul className="mt-4 grid grid-cols-2 gap-x-6 gap-y-2 text-sm">
             <li><a href="/#about" className="hover:text-brand-300">About</a></li>
             <li><a href="/#causes" className="hover:text-brand-300">Causes</a></li>
             <li><a href="/#programs" className="hover:text-brand-300">Programs</a></li>
