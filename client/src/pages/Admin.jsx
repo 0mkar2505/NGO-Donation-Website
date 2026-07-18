@@ -1,7 +1,19 @@
 import { useState, useEffect } from "react";
-import { LogIn, LogOut, Trash2, Loader2, ShieldAlert } from "lucide-react";
+import {
+  LogIn,
+  LogOut,
+  Trash2,
+  Loader2,
+  ShieldAlert,
+  Download,
+  Search,
+} from "lucide-react";
 import Button from "../components/Button.jsx";
 import { api } from "../lib/api.js";
+
+const authHeader = () => ({
+  Authorization: `Bearer ${localStorage.getItem("adminToken")}`,
+});
 
 export default function Admin() {
   const [token, setToken] = useState(
@@ -12,13 +24,20 @@ export default function Admin() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
 
+  const [page, setPage] = useState(1);
+  const [totalPages, setTotalPages] = useState(1);
+  const [search, setSearch] = useState("");
+  const [analytics, setAnalytics] = useState(null);
+
   const loadDonations = async () => {
     setLoading(true);
     try {
-      const data = await api("/admin/donations", {
-        headers: { Authorization: `Bearer ${token}` },
+      const params = new URLSearchParams({ page, limit: 10, search });
+      const data = await api(`/admin/donations?${params}`, {
+        headers: authHeader(),
       });
-      setDonations(data);
+      setDonations(data.donations);
+      setTotalPages(data.totalPages);
     } catch (err) {
       setError(err.message);
     } finally {
@@ -26,9 +45,21 @@ export default function Admin() {
     }
   };
 
+  const loadAnalytics = async () => {
+    try {
+      const data = await api("/admin/analytics", { headers: authHeader() });
+      setAnalytics(data);
+    } catch {
+      /* analytics is non-critical */
+    }
+  };
+
   useEffect(() => {
-    if (token) loadDonations();
-  }, [token]);
+    if (token) {
+      loadDonations();
+      loadAnalytics();
+    }
+  }, [token, page, search]);
 
   const login = async (e) => {
     e.preventDefault();
@@ -57,11 +88,29 @@ export default function Admin() {
     try {
       await api(`/admin/donations/${id}`, {
         method: "DELETE",
-        headers: { Authorization: `Bearer ${token}` },
+        headers: authHeader(),
       });
       loadDonations();
     } catch (err) {
       setError(err.message);
+    }
+  };
+
+  const exportCsv = async () => {
+    try {
+      const res = await fetch(
+        `${import.meta.env.VITE_API_BASE || "http://localhost:5000"}/admin/donations/export`,
+        { headers: authHeader() }
+      );
+      const blob = await res.blob();
+      const url = window.URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = "donations.csv";
+      a.click();
+      window.URL.revokeObjectURL(url);
+    } catch {
+      setError("Export failed");
     }
   };
 
@@ -116,7 +165,7 @@ export default function Admin() {
             Donation Records
           </h1>
           <p className="mt-1 text-sm text-stone-500">
-            {donations.length} total donations
+            {donations.length} shown · {analytics?.totalCount || 0} total
           </p>
         </div>
         <Button variant="outline" onClick={logout}>
@@ -130,7 +179,49 @@ export default function Admin() {
         </p>
       )}
 
-      <div className="mx-auto mt-8 max-w-5xl overflow-hidden rounded-3xl border border-stone-200 bg-white shadow-sm">
+      {analytics && (
+        <div className="mx-auto mt-8 grid max-w-5xl gap-4 sm:grid-cols-3">
+          <div className="rounded-2xl border border-stone-200 bg-white p-5 shadow-sm">
+            <p className="text-sm text-stone-500">Total Raised</p>
+            <p className="mt-1 font-display text-2xl font-bold text-brand-600">
+              ₹{analytics.totalAmount.toLocaleString()}
+            </p>
+          </div>
+          <div className="rounded-2xl border border-stone-200 bg-white p-5 shadow-sm">
+            <p className="text-sm text-stone-500">Total Donations</p>
+            <p className="mt-1 font-display text-2xl font-bold text-ink">
+              {analytics.totalCount}
+            </p>
+          </div>
+          <div className="rounded-2xl border border-stone-200 bg-white p-5 shadow-sm">
+            <p className="text-sm text-stone-500">Top Donor</p>
+            <p className="mt-1 font-display text-2xl font-bold text-ink">
+              {analytics.topDonors[0]?.name || "—"}
+            </p>
+          </div>
+        </div>
+      )}
+
+      <div className="mx-auto mt-8 flex max-w-5xl flex-wrap items-center gap-3">
+        <div className="relative flex-1 sm:min-w-[16rem]">
+          <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-stone-400" />
+          <input
+            type="text"
+            value={search}
+            onChange={(e) => {
+              setSearch(e.target.value);
+              setPage(1);
+            }}
+            placeholder="Search by name or email"
+            className="w-full rounded-xl border border-stone-300 py-3 pl-9 pr-4 text-sm outline-none focus:border-brand-500 focus:ring-2 focus:ring-brand-100"
+          />
+        </div>
+        <Button variant="outline" onClick={exportCsv}>
+          <Download className="h-4 w-4" /> Export CSV
+        </Button>
+      </div>
+
+      <div className="mx-auto mt-4 max-w-5xl overflow-hidden rounded-3xl border border-stone-200 bg-white shadow-sm">
         <table className="w-full text-left text-sm">
           <thead className="bg-stone-50 text-stone-500">
             <tr>
@@ -180,6 +271,30 @@ export default function Admin() {
               ))}
           </tbody>
         </table>
+      </div>
+
+      <div className="mx-auto mt-4 flex max-w-5xl items-center justify-between text-sm">
+        <span className="text-stone-500">
+          Page {page} of {totalPages || 1}
+        </span>
+        <div className="flex gap-2">
+          <Button
+            variant="outline"
+            className="px-4 py-2"
+            disabled={page === 1}
+            onClick={() => setPage((p) => Math.max(1, p - 1))}
+          >
+            Prev
+          </Button>
+          <Button
+            variant="outline"
+            className="px-4 py-2"
+            disabled={page >= totalPages}
+            onClick={() => setPage((p) => p + 1)}
+          >
+            Next
+          </Button>
+        </div>
       </div>
     </div>
   );
