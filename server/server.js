@@ -8,7 +8,17 @@ const app = express();
 app.use(express.json());
 app.use(cors());
 
-app.use(express.static(path.join(__dirname, "..", "public")));
+const publicDir = path.join(__dirname, "..", "public");
+const buildDir = path.join(publicDir, "build");
+
+if (require("fs").existsSync(buildDir)) {
+    app.use(express.static(buildDir));
+    app.get(/^\/(?!donations|admin\/login|admin\/donations).*/, (req, res) => {
+        res.sendFile(path.join(buildDir, "index.html"));
+    });
+} else {
+    app.use(express.static(publicDir));
+}
 
 const donationSchema = new mongoose.Schema({
     name: { type: String, required: true },
@@ -21,10 +31,7 @@ const Donation = mongoose.model("Donation", donationSchema);
 
 mongoose.connect(process.env.MONGO_URI)
     .then(() => console.log("Connected to MongoDB"))
-    .catch(err => {
-        console.error("MongoDB connection failed:", err.message);
-        process.exit(1);
-    });
+    .catch(err => console.error("MongoDB connection failed:", err.message));
 
 app.post("/donate", async (req, res) => {
     const { name, email, amount } = req.body;
