@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import Button from "../components/Button.jsx";
@@ -9,26 +9,24 @@ function Slideshow({ slides }) {
   const [index, setIndex] = useState(0);
   const total = slides.length;
 
-  useEffect(() => {
-    const id = setInterval(() => setIndex((i) => (i + 1) % total), 3500);
-    return () => clearInterval(id);
-  }, [total]);
-
   const go = (dir) => setIndex((i) => (i + dir + total) % total);
+  const current = slides[index];
 
   return (
-    <div className="relative overflow-hidden rounded-3xl bg-ink shadow-md">
-      <div className="relative h-[22rem] sm:h-[28rem]">
-        {slides.map((s, i) => (
-          <img
-            key={s.src}
-            src={s.src}
-            alt={s.caption}
-            className={`absolute inset-0 h-full w-full object-contain transition-opacity duration-700 ${
-              i === index ? "opacity-100" : "opacity-0"
-            }`}
-          />
-        ))}
+    <div className="relative overflow-hidden rounded-3xl shadow-md">
+      {/* Blurred backdrop */}
+      <img
+        src={current.src}
+        alt=""
+        aria-hidden="true"
+        className="absolute inset-0 h-full w-full scale-110 object-cover blur-xl brightness-90"
+      />
+      <div className="relative h-[22rem] bg-white/40 sm:h-[28rem]">
+        <img
+          src={current.src}
+          alt={current.caption}
+          className="absolute inset-0 h-full w-full object-contain p-4 transition-opacity duration-500"
+        />
       </div>
 
       <button

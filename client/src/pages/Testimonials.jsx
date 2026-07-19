@@ -24,22 +24,17 @@ export default function Testimonials() {
               key={t.name}
               className="flex flex-col rounded-3xl border border-stone-200 bg-white p-7 shadow-sm"
             >
-              <div className="flex items-center gap-3">
-                <img
-                  src={t.avatar}
-                  alt={t.name}
-                  className="h-12 w-12 rounded-full object-cover"
-                />
-                <div>
-                  <p className="font-semibold text-ink">{t.name}</p>
-                  <p className="text-sm text-stone-500">{t.role}</p>
-                </div>
-              </div>
+              <img
+                src={t.avatar}
+                alt={t.name}
+                className="h-14 w-14 rounded-full object-cover"
+              />
               <blockquote className="mt-4 flex-1 text-stone-700">
                 “{t.quote}”
               </blockquote>
-              <figcaption className="mt-5 border-t border-stone-100 pt-4 text-sm text-stone-500">
-                {t.role}
+              <figcaption className="mt-5 border-t border-stone-100 pt-4">
+                <p className="font-semibold text-ink">{t.name}</p>
+                <p className="text-sm text-stone-500">{t.role}</p>
               </figcaption>
             </figure>
           ))}

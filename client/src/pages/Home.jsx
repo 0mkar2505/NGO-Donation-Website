@@ -36,18 +36,18 @@ export default function Home() {
             </div>
           </div>
 
-          <div className="relative animate-fade-up">
-            <div className="grid grid-cols-2 gap-4">
+          <div className="relative flex h-full animate-fade-up items-stretch">
+            <div className="grid w-full grid-cols-2 gap-4">
               <img
                 src="/images/AboutUs.jpg"
                 alt="Children being helped"
-                className="aspect-[3/4] w-full rounded-3xl object-cover shadow-lg"
+                className="h-full min-h-[20rem] w-full rounded-3xl object-cover shadow-lg"
               />
-              <div className="mt-10 grid grid-rows-2 gap-4">
+              <div className="grid grid-rows-2 gap-4">
                 <img
                   src="/images/cause-graph.jpg"
                   alt="Nutrition causes"
-                  className="aspect-square w-full rounded-3xl object-cover shadow-lg"
+                  className="h-full min-h-[9rem] w-full rounded-3xl object-cover shadow-lg"
                 />
                 <div className="flex items-center justify-center rounded-3xl bg-brand-500 p-6 text-white shadow-lg">
                   <div className="text-center">
@@ -107,29 +107,31 @@ export default function Home() {
       </section>
 
       {/* BANNER */}
-      <section className="relative mt-4">
-        <img
-          src="/images/home-banner.jpg"
-          alt="Our work in the field"
-          className="h-72 w-full object-cover sm:h-96"
-        />
-        <div className="absolute inset-0 flex items-center bg-gradient-to-r from-ink/70 to-transparent">
-          <div className="container-px">
-            <h2 className="max-w-xl font-display text-3xl font-extrabold text-white sm:text-4xl">
-              Real change, one community at a time
-            </h2>
-            <p className="mt-3 max-w-md text-white/80">
-              From village kitchens to maternal care — see the impact your
-              support makes on the ground.
-            </p>
-            <Link to="/programs" className="mt-6 inline-block">
-              <Button
-                variant="outline"
-                className="border-white bg-white text-brand-600 hover:bg-brand-50"
-              >
-                Explore Our Work
-              </Button>
-            </Link>
+      <section className="container-px my-10">
+        <div className="relative overflow-hidden rounded-3xl shadow-md">
+          <img
+            src="/images/home-banner.jpg"
+            alt="Our work in the field"
+            className="h-72 w-full object-cover sm:h-96"
+          />
+          <div className="absolute inset-0 flex items-center bg-gradient-to-r from-ink/70 to-transparent">
+            <div className="container-px">
+              <h2 className="max-w-xl font-display text-3xl font-extrabold text-white sm:text-4xl">
+                Real change, one community at a time
+              </h2>
+              <p className="mt-3 max-w-md text-white/80">
+                From village kitchens to maternal care — see the impact your
+                support makes on the ground.
+              </p>
+              <Link to="/programs" className="mt-6 inline-block">
+                <Button
+                  variant="outline"
+                  className="border-white bg-white text-brand-600 hover:bg-brand-50"
+                >
+                  Explore Our Work
+                </Button>
+              </Link>
+            </div>
           </div>
         </div>
       </section>

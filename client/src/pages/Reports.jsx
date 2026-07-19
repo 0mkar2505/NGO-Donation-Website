@@ -4,7 +4,6 @@ import { Download } from "lucide-react";
 const reports = [
   { year: "2024-25", file: "/documents/annual-report-2024-25.pdf", thumb: "/images/report-2024-25.jpg" },
   { year: "2023-24", file: "/documents/annual-report-2023-24.pdf", thumb: "/images/report-2023-24.jpg" },
-  { year: "2022-23", file: "/documents/annual-report-2022-23.pdf" },
 ];
 
 export default function Reports() {
@@ -15,33 +14,35 @@ export default function Reports() {
           Annual Reports &amp; Financials
         </h1>
         <p className="mt-3 text-stone-600">
-          We believe in complete transparency. Download our audited financial
-          reports below.
+          We believe in complete transparency. Hover a report to download our
+          audited financials.
         </p>
       </div>
 
-      <div className="mx-auto mt-12 max-w-3xl space-y-4">
+      <div className="mx-auto mt-12 grid max-w-3xl gap-8 sm:grid-cols-2">
         {reports.map((report) => (
           <a
             key={report.year}
             href={report.file}
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center gap-4 rounded-2xl border border-stone-200 bg-white p-5 shadow-sm transition hover:bg-stone-50"
+            className="group block overflow-hidden rounded-2xl border border-stone-200 bg-white shadow-sm transition-transform duration-300 hover:-translate-y-1 hover:shadow-lg"
           >
-            {report.thumb && (
+            <div className="overflow-hidden">
               <img
                 src={report.thumb}
                 alt={`Annual Report ${report.year} cover`}
-                className="h-16 w-12 flex-shrink-0 rounded object-cover"
+                className="aspect-[3/4] w-full object-cover transition-transform duration-300 group-hover:scale-105"
               />
-            )}
-            <span className="font-medium text-ink">
-              Annual Report {report.year}
-            </span>
-            <span className="ml-auto flex items-center gap-1 text-sm font-medium text-brand-500">
-              <Download className="h-4 w-4" /> Download PDF
-            </span>
+            </div>
+            <div className="flex items-center justify-between p-4">
+              <span className="font-medium text-ink">
+                Annual Report {report.year}
+              </span>
+              <span className="flex items-center gap-1 text-sm font-medium text-brand-500 opacity-0 transition group-hover:opacity-100">
+                <Download className="h-4 w-4" /> Download PDF
+              </span>
+            </div>
           </a>
         ))}
       </div>
