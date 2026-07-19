@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import Button from "../components/Button.jsx";
-import { about, stats } from "../data/content.js";
+import { about, stats, gallery } from "../data/content.js";
 import { Calendar, Utensils, Map, HeartHandshake } from "lucide-react";
 
 const iconMap = { calendar: Calendar, utensils: Utensils, map: Map, heart: HeartHandshake };
@@ -81,6 +81,34 @@ export default function About() {
                 {v.text}
               </p>
             </div>
+          ))}
+        </div>
+      </section>
+
+      <section className="container-px py-16">
+        <div className="mx-auto max-w-2xl text-center">
+          <h2 className="font-display text-3xl font-bold text-ink">
+            From the field
+          </h2>
+          <p className="mt-3 text-stone-600">
+            A glimpse of our work across communities.
+          </p>
+        </div>
+        <div className="mt-10 grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-4">
+          {gallery.map((g) => (
+            <figure
+              key={g.src}
+              className="overflow-hidden rounded-2xl border border-stone-200 bg-white shadow-sm"
+            >
+              <img
+                src={g.src}
+                alt={g.caption}
+                className="h-44 w-full object-cover"
+              />
+              <figcaption className="p-3 text-xs text-stone-500">
+                {g.caption}
+              </figcaption>
+            </figure>
           ))}
         </div>
       </section>

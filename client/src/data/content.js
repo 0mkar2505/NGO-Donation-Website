@@ -34,6 +34,8 @@ export const gallery = [
   { src: "/images/gallery/gallery-4.jpg", caption: "Water purification drive" },
   { src: "/images/gallery/gallery-5.jpg", caption: "Volunteers distributing ration kits" },
   { src: "/images/gallery/gallery-6.jpg", caption: "Health worker training" },
+  { src: "/images/gallery/gallery-about.jpg", caption: "Our team in the field" },
+  { src: "/images/gallery/gallery-cause.png", caption: "The nutrition gap we address" },
 ];
 
 export const programs = [
