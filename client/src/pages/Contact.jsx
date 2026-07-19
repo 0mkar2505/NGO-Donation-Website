@@ -23,41 +23,41 @@ export default function Contact() {
         <div className="mx-auto grid max-w-5xl gap-10 lg:grid-cols-2">
           <div className="grid gap-6 sm:grid-cols-2">
             <div className="flex items-start gap-4 rounded-2xl border border-stone-200 bg-white p-6 shadow-sm">
-              <Mail className="h-6 w-6 text-brand-500" />
-              <div>
+              <Mail className="h-6 w-6 flex-shrink-0 text-brand-500" />
+              <div className="min-w-0">
                 <p className="font-semibold text-ink">Email</p>
                 <a
                   href={`mailto:${contact.email}`}
-                  className="text-sm text-stone-600 hover:text-brand-600"
+                  className="block break-words text-sm text-stone-600 hover:text-brand-600"
                 >
                   {contact.email}
                 </a>
               </div>
             </div>
             <div className="flex items-start gap-4 rounded-2xl border border-stone-200 bg-white p-6 shadow-sm">
-              <Phone className="h-6 w-6 text-brand-500" />
-              <div>
+              <Phone className="h-6 w-6 flex-shrink-0 text-brand-500" />
+              <div className="min-w-0">
                 <p className="font-semibold text-ink">Phone</p>
                 <a
                   href={`tel:${contact.phone.replace(/\s/g, "")}`}
-                  className="text-sm text-stone-600 hover:text-brand-600"
+                  className="block break-words text-sm text-stone-600 hover:text-brand-600"
                 >
                   {contact.phone}
                 </a>
               </div>
             </div>
             <div className="flex items-start gap-4 rounded-2xl border border-stone-200 bg-white p-6 shadow-sm">
-              <MapPin className="h-6 w-6 text-brand-500" />
-              <div>
+              <MapPin className="h-6 w-6 flex-shrink-0 text-brand-500" />
+              <div className="min-w-0">
                 <p className="font-semibold text-ink">Address</p>
-                <p className="text-sm text-stone-600">{contact.address}</p>
+                <p className="break-words text-sm text-stone-600">{contact.address}</p>
               </div>
             </div>
             <div className="flex items-start gap-4 rounded-2xl border border-stone-200 bg-white p-6 shadow-sm">
-              <Clock className="h-6 w-6 text-brand-500" />
-              <div>
+              <Clock className="h-6 w-6 flex-shrink-0 text-brand-500" />
+              <div className="min-w-0">
                 <p className="font-semibold text-ink">Hours</p>
-                <p className="text-sm text-stone-600">{contact.hours}</p>
+                <p className="break-words text-sm text-stone-600">{contact.hours}</p>
               </div>
             </div>
           </div>
