@@ -44,6 +44,8 @@ export const programs = [
     region: "Nationwide",
     description:
       "Providing nutritious meals & micronutrient supplements to vulnerable children across the country.",
+    image: "/images/gallery/gallery-1.jpg",
+    impactImage: "/images/program-impact1.jpg",
     impact: [
       "35% improvement in child growth indicators",
       "20% reduction in anemia among school children",
@@ -54,6 +56,7 @@ export const programs = [
     region: "Maharashtra · Rajasthan · Bihar · UP",
     description:
       "Improving maternal nutrition through fortified food distribution & awareness programs.",
+    image: "/images/gallery/gallery-2.jpg",
     impact: [
       "17% increase in healthy birth weights",
       "25% reduction in iron-deficiency anemia",
@@ -64,6 +67,8 @@ export const programs = [
     region: "Jharkhand · Odisha · MP · Chhattisgarh",
     description:
       "Addressing malnutrition caused by poor sanitation & water quality in rural belts.",
+    image: "/images/gallery/gallery-3.jpg",
+    impactImage: "/images/program-impact3.jpg",
     impact: [
       "10,000 water purification units installed",
       "30% decrease in diarrheal diseases under age 5",
@@ -74,6 +79,8 @@ export const programs = [
     region: "Urban & Rural Outreach",
     description:
       "Using mobile technology to spread nutrition awareness at scale.",
+    image: "/images/gallery/gallery-4.jpg",
+    impactImage: "/images/program-impact4.jpg",
     impact: [
       "AI chatbot for customized dietary advice",
       "60% of users reported improved diet choices",
@@ -117,17 +124,20 @@ export const testimonials = [
       "The Nourish India meals changed my daughter's health within months. She is finally gaining weight and smiling again.",
     name: "Sunita Devi",
     role: "Mother, Bihar",
+    avatar: "/images/testimonial-1.jpg",
   },
   {
     quote:
       "Their maternal nutrition program gave our village the knowledge and food we never had access to before.",
     name: "Dr. Arvind Mehta",
     role: "Community Health Worker",
+    avatar: "/images/testimonial-2.jpg",
   },
   {
     quote:
       "Transparent, on the ground, and relentless. This is how grassroots change actually happens.",
     name: "Priya Nair",
     role: "Monthly Donor",
+    avatar: "/images/testimonial-3.jpg",
   },
 ];

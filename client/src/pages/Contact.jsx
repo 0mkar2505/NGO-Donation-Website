@@ -61,6 +61,16 @@ export default function Contact() {
           </div>
         </div>
       </section>
+
+      <section className="container-px pb-16">
+        <div className="mx-auto max-w-4xl overflow-hidden rounded-3xl shadow-md">
+          <img
+            src="/images/contact-map.jpg"
+            alt="Our location"
+            className="h-72 w-full object-cover"
+          />
+        </div>
+      </section>
     </div>
   );
 }

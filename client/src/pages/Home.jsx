@@ -106,6 +106,17 @@ export default function Home() {
         </div>
       </section>
 
+      {/* PHOTO STRIP */}
+      <section className="container-px pb-8">
+        <div className="overflow-hidden rounded-3xl shadow-md">
+          <img
+            src="/images/home-banner.jpg"
+            alt="Our work in the field"
+            className="h-64 w-full object-cover sm:h-80"
+          />
+        </div>
+      </section>
+
       {/* DONATE CTA */}
       <section className="container-px py-20">
         <div className="overflow-hidden rounded-3xl bg-brand-500 px-8 py-14 text-center text-white shadow-lg sm:px-16">

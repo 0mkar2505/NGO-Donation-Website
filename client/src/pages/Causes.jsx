@@ -39,8 +39,8 @@ export default function Causes() {
       <section className="bg-stone-100 py-16">
         <div className="container-px grid items-center gap-12 lg:grid-cols-2">
           <img
-            src="/images/Cause.png"
-            alt="Malnutrition causes illustration"
+            src="/images/cause-graph.jpg"
+            alt="Statistics on malnutrition in India"
             className="w-full rounded-3xl object-cover shadow-md"
           />
           <div>

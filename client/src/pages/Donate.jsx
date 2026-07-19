@@ -62,6 +62,11 @@ export default function Donate() {
           Your gift helps us put nutritious food on the plates of children who
           need it most.
         </p>
+        <img
+          src="/images/donate.jpg"
+          alt="A child receiving a nutritious meal"
+          className="mt-6 w-full rounded-3xl object-cover shadow-md"
+        />
       </div>
 
       <div className="mx-auto mt-12 grid max-w-5xl gap-10 lg:grid-cols-5">

@@ -2,8 +2,8 @@ import { Link } from "react-router-dom";
 import { Download } from "lucide-react";
 
 const reports = [
-  { year: "2024-25", file: "/documents/annual-report-2024-25.pdf" },
-  { year: "2023-24", file: "/documents/annual-report-2023-24.pdf" },
+  { year: "2024-25", file: "/documents/annual-report-2024-25.pdf", thumb: "/images/report-2024-25.jpg" },
+  { year: "2023-24", file: "/documents/annual-report-2023-24.pdf", thumb: "/images/report-2023-24.jpg" },
   { year: "2022-23", file: "/documents/annual-report-2022-23.pdf" },
 ];
 
@@ -27,12 +27,19 @@ export default function Reports() {
             href={report.file}
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center justify-between rounded-2xl border border-stone-200 bg-white p-5 shadow-sm transition hover:bg-stone-50"
+            className="flex items-center gap-4 rounded-2xl border border-stone-200 bg-white p-5 shadow-sm transition hover:bg-stone-50"
           >
+            {report.thumb && (
+              <img
+                src={report.thumb}
+                alt={`Annual Report ${report.year} cover`}
+                className="h-16 w-12 flex-shrink-0 rounded object-cover"
+              />
+            )}
             <span className="font-medium text-ink">
               Annual Report {report.year}
             </span>
-            <span className="flex items-center gap-1 text-sm font-medium text-brand-500">
+            <span className="ml-auto flex items-center gap-1 text-sm font-medium text-brand-500">
               <Download className="h-4 w-4" /> Download PDF
             </span>
           </a>

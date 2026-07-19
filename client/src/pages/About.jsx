@@ -43,11 +43,18 @@ export default function About() {
               <Button>Support Our Mission</Button>
             </Link>
           </div>
-          <img
-            src="/images/AboutUs.jpg"
-            alt="Our team helping communities"
-            className="w-full rounded-3xl object-cover shadow-md"
-          />
+          <div className="space-y-4">
+            <img
+              src="/images/AboutUs.jpg"
+              alt="Our team helping communities"
+              className="w-full rounded-3xl object-cover shadow-md"
+            />
+            <img
+              src="/images/about-2.jpg"
+              alt="Our work in the field"
+              className="w-full rounded-3xl object-cover shadow-md"
+            />
+          </div>
         </div>
       </section>
 

@@ -26,13 +26,13 @@ export default function Programs() {
 
       <section className="bg-stone-100 py-16">
         <div className="container-px grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-          {programs.map((p, i) => (
+          {programs.map((p) => (
             <div
               key={p.title}
               className="overflow-hidden rounded-2xl border border-stone-200 bg-white shadow-sm"
             >
               <img
-                src={`/images/gallery/gallery-${(i % 6) + 1}.jpg`}
+                src={p.image}
                 alt={p.title}
                 className="h-40 w-full object-cover"
               />
@@ -44,6 +44,13 @@ export default function Programs() {
                 <p className="mt-2 text-sm leading-relaxed text-stone-600">
                   {p.description}
                 </p>
+                {p.impactImage && (
+                  <img
+                    src={p.impactImage}
+                    alt={`${p.title} impact`}
+                    className="mt-4 w-full rounded-xl border border-stone-100"
+                  />
+                )}
               </div>
             </div>
           ))}
