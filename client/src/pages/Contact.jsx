@@ -64,7 +64,7 @@ export default function Contact() {
 
           <div className="overflow-hidden rounded-3xl shadow-md">
             <img
-              src="/images/contact-map.jpg"
+              src="/images/home-banner.jpg"
               alt="Our location"
               className="h-full min-h-[18rem] w-full object-cover"
             />

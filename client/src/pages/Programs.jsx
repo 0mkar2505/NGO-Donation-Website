@@ -17,19 +17,17 @@ function Slideshow({ slides }) {
   const go = (dir) => setIndex((i) => (i + dir + total) % total);
 
   return (
-    <div className="relative overflow-hidden rounded-3xl shadow-md">
-      <div
-        className="flex transition-transform duration-700 ease-in-out"
-        style={{ transform: `translateX(-${index * 100}%)` }}
-      >
-        {slides.map((s) => (
-          <div key={s.src} className="w-full flex-shrink-0">
-            <img
-              src={s.src}
-              alt={s.caption}
-              className="h-72 w-full object-cover sm:h-96"
-            />
-          </div>
+    <div className="relative overflow-hidden rounded-3xl bg-ink shadow-md">
+      <div className="relative h-[22rem] sm:h-[28rem]">
+        {slides.map((s, i) => (
+          <img
+            key={s.src}
+            src={s.src}
+            alt={s.caption}
+            className={`absolute inset-0 h-full w-full object-contain transition-opacity duration-700 ${
+              i === index ? "opacity-100" : "opacity-0"
+            }`}
+          />
         ))}
       </div>
 
@@ -119,7 +117,7 @@ export default function Programs() {
             The outcomes each program is designed to deliver.
           </p>
         </div>
-        <div className="mx-auto mt-10 grid max-w-5xl gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="mx-auto mt-10 grid max-w-4xl gap-8 sm:grid-cols-2">
           {impacts.map((p) => (
             <div
               key={p.title}
@@ -129,7 +127,7 @@ export default function Programs() {
               <img
                 src={p.impactImage}
                 alt={`${p.title} impact`}
-                className="mt-4 w-full rounded-xl border border-stone-100"
+                className="mt-4 max-h-80 w-full rounded-xl border border-stone-100 object-contain"
               />
               <ul className="mt-4 space-y-1">
                 {p.impact.map((point) => (

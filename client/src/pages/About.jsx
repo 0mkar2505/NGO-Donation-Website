@@ -63,7 +63,7 @@ export default function About() {
       <section className="bg-stone-100 py-16">
         <div className="container-px grid items-center gap-12 lg:grid-cols-2">
           <img
-            src="/images/gallery/gallery-about.jpg"
+            src="/images/gallery/gallery-6.jpg"
             alt="Our team in the field"
             className="order-2 w-full rounded-3xl object-cover shadow-md lg:order-1"
           />
