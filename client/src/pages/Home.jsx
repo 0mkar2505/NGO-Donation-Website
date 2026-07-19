@@ -45,7 +45,7 @@ export default function Home() {
               />
               <div className="mt-10 grid grid-rows-2 gap-4">
                 <img
-                  src="/images/Cause.png"
+                  src="/images/cause-graph.jpg"
                   alt="Nutrition causes"
                   className="aspect-square w-full rounded-3xl object-cover shadow-lg"
                 />
@@ -106,14 +106,31 @@ export default function Home() {
         </div>
       </section>
 
-      {/* PHOTO STRIP */}
-      <section className="container-px pb-8">
-        <div className="overflow-hidden rounded-3xl shadow-md">
-          <img
-            src="/images/home-banner.jpg"
-            alt="Our work in the field"
-            className="h-64 w-full object-cover sm:h-80"
-          />
+      {/* BANNER */}
+      <section className="relative mt-4">
+        <img
+          src="/images/home-banner.jpg"
+          alt="Our work in the field"
+          className="h-72 w-full object-cover sm:h-96"
+        />
+        <div className="absolute inset-0 flex items-center bg-gradient-to-r from-ink/70 to-transparent">
+          <div className="container-px">
+            <h2 className="max-w-xl font-display text-3xl font-extrabold text-white sm:text-4xl">
+              Real change, one community at a time
+            </h2>
+            <p className="mt-3 max-w-md text-white/80">
+              From village kitchens to maternal care — see the impact your
+              support makes on the ground.
+            </p>
+            <Link to="/programs" className="mt-6 inline-block">
+              <Button
+                variant="outline"
+                className="border-white bg-white text-brand-600 hover:bg-brand-50"
+              >
+                Explore Our Work
+              </Button>
+            </Link>
+          </div>
         </div>
       </section>
 

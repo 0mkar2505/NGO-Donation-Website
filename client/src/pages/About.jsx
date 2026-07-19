@@ -22,6 +22,7 @@ export default function About() {
         </div>
       </section>
 
+      {/* Mission + image */}
       <section className="container-px py-16">
         <div className="grid items-center gap-12 lg:grid-cols-2">
           <div>
@@ -43,7 +44,7 @@ export default function About() {
               <Button>Support Our Mission</Button>
             </Link>
           </div>
-          <div className="space-y-4">
+          <div className="relative">
             <img
               src="/images/AboutUs.jpg"
               alt="Our team helping communities"
@@ -52,30 +53,50 @@ export default function About() {
             <img
               src="/images/about-2.jpg"
               alt="Our work in the field"
-              className="w-full rounded-3xl object-cover shadow-md"
+              className="absolute -bottom-6 -left-6 hidden w-40 rounded-2xl border-4 border-white object-cover shadow-lg sm:block"
             />
           </div>
         </div>
       </section>
 
+      {/* Story (image left, text right) */}
       <section className="bg-stone-100 py-16">
-        <div className="container-px max-w-3xl">
-          <h2 className="font-display text-3xl font-bold text-ink">Our Story</h2>
-          <div className="mt-6 space-y-4 text-stone-600">
-            {about.story.map((p, i) => (
-              <p key={i} className="leading-relaxed">
-                {p}
+        <div className="container-px grid items-center gap-12 lg:grid-cols-2">
+          <img
+            src="/images/gallery/gallery-about.jpg"
+            alt="Our team in the field"
+            className="order-2 w-full rounded-3xl object-cover shadow-md lg:order-1"
+          />
+          <div className="order-1 lg:order-2">
+            <h2 className="font-display text-3xl font-bold text-ink">
+              Our Story
+            </h2>
+            <div className="mt-6 space-y-4 text-stone-600">
+              {about.story.map((p, i) => (
+                <p key={i} className="leading-relaxed">
+                  {p}
+                </p>
+              ))}
+              <p className="leading-relaxed">
+                Over three decades we have learned that ending malnutrition is
+                not a single intervention — it is sustained, community-owned
+                work. That belief shapes everything we do, from the meals we
+                serve to the data we publish.
               </p>
-            ))}
+            </div>
           </div>
         </div>
       </section>
 
+      {/* Values */}
       <section className="container-px py-16">
         <div className="mx-auto max-w-2xl text-center">
           <h2 className="font-display text-3xl font-bold text-ink">
             What guides us
           </h2>
+          <p className="mt-3 text-stone-600">
+            The principles that keep our work honest and effective.
+          </p>
         </div>
         <div className="mt-10 grid gap-6 sm:grid-cols-3">
           {about.values.map((v) => (
@@ -92,6 +113,7 @@ export default function About() {
         </div>
       </section>
 
+      {/* Gallery */}
       <section className="container-px py-16">
         <div className="mx-auto max-w-2xl text-center">
           <h2 className="font-display text-3xl font-bold text-ink">
@@ -120,6 +142,7 @@ export default function About() {
         </div>
       </section>
 
+      {/* Stats */}
       <section className="bg-ink py-14 text-white">
         <div className="container-px grid grid-cols-2 gap-8 md:grid-cols-4">
           {stats.map((s) => {

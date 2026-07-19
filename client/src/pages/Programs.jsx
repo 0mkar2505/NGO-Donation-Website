@@ -1,9 +1,76 @@
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 import Button from "../components/Button.jsx";
 import ProgramsCarousel from "../components/ProgramsCarousel.jsx";
 import { programs } from "../data/content.js";
 
+function Slideshow({ slides }) {
+  const [index, setIndex] = useState(0);
+  const total = slides.length;
+
+  useEffect(() => {
+    const id = setInterval(() => setIndex((i) => (i + 1) % total), 3500);
+    return () => clearInterval(id);
+  }, [total]);
+
+  const go = (dir) => setIndex((i) => (i + dir + total) % total);
+
+  return (
+    <div className="relative overflow-hidden rounded-3xl shadow-md">
+      <div
+        className="flex transition-transform duration-700 ease-in-out"
+        style={{ transform: `translateX(-${index * 100}%)` }}
+      >
+        {slides.map((s) => (
+          <div key={s.src} className="w-full flex-shrink-0">
+            <img
+              src={s.src}
+              alt={s.caption}
+              className="h-72 w-full object-cover sm:h-96"
+            />
+          </div>
+        ))}
+      </div>
+
+      <button
+        aria-label="Previous"
+        onClick={() => go(-1)}
+        className="absolute left-3 top-1/2 -translate-y-1/2 rounded-full bg-white/80 p-2 text-ink shadow hover:bg-white"
+      >
+        <ChevronLeft className="h-5 w-5" />
+      </button>
+      <button
+        aria-label="Next"
+        onClick={() => go(1)}
+        className="absolute right-3 top-1/2 -translate-y-1/2 rounded-full bg-white/80 p-2 text-ink shadow hover:bg-white"
+      >
+        <ChevronRight className="h-5 w-5" />
+      </button>
+
+      <div className="absolute bottom-4 left-1/2 flex -translate-x-1/2 gap-2">
+        {slides.map((s, i) => (
+          <button
+            key={s.src}
+            aria-label={`Go to slide ${i + 1}`}
+            onClick={() => setIndex(i)}
+            className={`h-2 rounded-full transition-all ${
+              i === index ? "w-6 bg-white" : "w-2 bg-white/50"
+            }`}
+          />
+        ))}
+      </div>
+    </div>
+  );
+}
+
 export default function Programs() {
+  const slides = programs.map((p) => ({
+    src: p.image,
+    caption: p.title,
+  }));
+  const impacts = programs.filter((p) => p.impactImage);
+
   return (
     <div>
       <section className="bg-gradient-to-b from-brand-50 to-stone-50 py-16">
@@ -20,38 +87,61 @@ export default function Programs() {
         </div>
       </section>
 
+      {/* Program detail carousel */}
       <section className="container-px py-16">
         <ProgramsCarousel />
       </section>
 
+      {/* Screenshots slideshow */}
       <section className="bg-stone-100 py-16">
-        <div className="container-px grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-          {programs.map((p) => (
+        <div className="container-px">
+          <div className="mx-auto max-w-2xl text-center">
+            <h2 className="font-display text-3xl font-bold text-ink">
+              On the ground
+            </h2>
+            <p className="mt-3 text-stone-600">
+              A rotating look at our programs in action.
+            </p>
+          </div>
+          <div className="mx-auto mt-10 max-w-4xl">
+            <Slideshow slides={slides} />
+          </div>
+        </div>
+      </section>
+
+      {/* Impact graphs (separate entity) */}
+      <section className="container-px py-16">
+        <div className="mx-auto max-w-2xl text-center">
+          <h2 className="font-display text-3xl font-bold text-ink">
+            Measurable impact
+          </h2>
+          <p className="mt-3 text-stone-600">
+            The outcomes each program is designed to deliver.
+          </p>
+        </div>
+        <div className="mx-auto mt-10 grid max-w-5xl gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          {impacts.map((p) => (
             <div
               key={p.title}
-              className="overflow-hidden rounded-2xl border border-stone-200 bg-white shadow-sm"
+              className="overflow-hidden rounded-2xl border border-stone-200 bg-white p-5 shadow-sm"
             >
+              <p className="text-sm font-semibold text-ink">{p.title}</p>
               <img
-                src={p.image}
-                alt={p.title}
-                className="h-40 w-full object-cover"
+                src={p.impactImage}
+                alt={`${p.title} impact`}
+                className="mt-4 w-full rounded-xl border border-stone-100"
               />
-              <div className="p-5">
-                <p className="text-xs font-medium uppercase tracking-wide text-brand-500">
-                  {p.region}
-                </p>
-                <h3 className="mt-1 font-semibold text-ink">{p.title}</h3>
-                <p className="mt-2 text-sm leading-relaxed text-stone-600">
-                  {p.description}
-                </p>
-                {p.impactImage && (
-                  <img
-                    src={p.impactImage}
-                    alt={`${p.title} impact`}
-                    className="mt-4 w-full rounded-xl border border-stone-100"
-                  />
-                )}
-              </div>
+              <ul className="mt-4 space-y-1">
+                {p.impact.map((point) => (
+                  <li
+                    key={point}
+                    className="flex items-start gap-2 text-sm text-stone-600"
+                  >
+                    <span className="mt-0.5 text-brand-500">✓</span>
+                    {point}
+                  </li>
+                ))}
+              </ul>
             </div>
           ))}
         </div>

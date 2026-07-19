@@ -19,56 +19,56 @@ export default function Contact() {
         </div>
       </section>
 
-      <section className="container-px py-16">
-        <div className="mx-auto grid max-w-4xl gap-6 sm:grid-cols-2">
-          <div className="flex items-start gap-4 rounded-2xl border border-stone-200 bg-white p-6 shadow-sm">
-            <Mail className="h-6 w-6 text-brand-500" />
-            <div>
-              <p className="font-semibold text-ink">Email</p>
-              <a
-                href={`mailto:${contact.email}`}
-                className="text-sm text-stone-600 hover:text-brand-600"
-              >
-                {contact.email}
-              </a>
+      <section className="container-px py-16 pb-20">
+        <div className="mx-auto grid max-w-5xl gap-10 lg:grid-cols-2">
+          <div className="grid gap-6 sm:grid-cols-2">
+            <div className="flex items-start gap-4 rounded-2xl border border-stone-200 bg-white p-6 shadow-sm">
+              <Mail className="h-6 w-6 text-brand-500" />
+              <div>
+                <p className="font-semibold text-ink">Email</p>
+                <a
+                  href={`mailto:${contact.email}`}
+                  className="text-sm text-stone-600 hover:text-brand-600"
+                >
+                  {contact.email}
+                </a>
+              </div>
+            </div>
+            <div className="flex items-start gap-4 rounded-2xl border border-stone-200 bg-white p-6 shadow-sm">
+              <Phone className="h-6 w-6 text-brand-500" />
+              <div>
+                <p className="font-semibold text-ink">Phone</p>
+                <a
+                  href={`tel:${contact.phone.replace(/\s/g, "")}`}
+                  className="text-sm text-stone-600 hover:text-brand-600"
+                >
+                  {contact.phone}
+                </a>
+              </div>
+            </div>
+            <div className="flex items-start gap-4 rounded-2xl border border-stone-200 bg-white p-6 shadow-sm">
+              <MapPin className="h-6 w-6 text-brand-500" />
+              <div>
+                <p className="font-semibold text-ink">Address</p>
+                <p className="text-sm text-stone-600">{contact.address}</p>
+              </div>
+            </div>
+            <div className="flex items-start gap-4 rounded-2xl border border-stone-200 bg-white p-6 shadow-sm">
+              <Clock className="h-6 w-6 text-brand-500" />
+              <div>
+                <p className="font-semibold text-ink">Hours</p>
+                <p className="text-sm text-stone-600">{contact.hours}</p>
+              </div>
             </div>
           </div>
-          <div className="flex items-start gap-4 rounded-2xl border border-stone-200 bg-white p-6 shadow-sm">
-            <Phone className="h-6 w-6 text-brand-500" />
-            <div>
-              <p className="font-semibold text-ink">Phone</p>
-              <a
-                href={`tel:${contact.phone.replace(/\s/g, "")}`}
-                className="text-sm text-stone-600 hover:text-brand-600"
-              >
-                {contact.phone}
-              </a>
-            </div>
-          </div>
-          <div className="flex items-start gap-4 rounded-2xl border border-stone-200 bg-white p-6 shadow-sm">
-            <MapPin className="h-6 w-6 text-brand-500" />
-            <div>
-              <p className="font-semibold text-ink">Address</p>
-              <p className="text-sm text-stone-600">{contact.address}</p>
-            </div>
-          </div>
-          <div className="flex items-start gap-4 rounded-2xl border border-stone-200 bg-white p-6 shadow-sm">
-            <Clock className="h-6 w-6 text-brand-500" />
-            <div>
-              <p className="font-semibold text-ink">Hours</p>
-              <p className="text-sm text-stone-600">{contact.hours}</p>
-            </div>
-          </div>
-        </div>
-      </section>
 
-      <section className="container-px pb-16">
-        <div className="mx-auto max-w-4xl overflow-hidden rounded-3xl shadow-md">
-          <img
-            src="/images/contact-map.jpg"
-            alt="Our location"
-            className="h-72 w-full object-cover"
-          />
+          <div className="overflow-hidden rounded-3xl shadow-md">
+            <img
+              src="/images/contact-map.jpg"
+              alt="Our location"
+              className="h-full min-h-[18rem] w-full object-cover"
+            />
+          </div>
         </div>
       </section>
     </div>
