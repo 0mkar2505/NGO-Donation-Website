@@ -114,24 +114,15 @@ export default function Home() {
             alt="Our work in the field"
             className="h-72 w-full object-cover sm:h-96"
           />
-          <div className="absolute inset-0 flex items-center bg-gradient-to-r from-ink/70 to-transparent">
-            <div className="container-px">
-              <h2 className="max-w-xl font-display text-3xl font-extrabold text-white sm:text-4xl">
-                Real change, one community at a time
-              </h2>
-              <p className="mt-3 max-w-md text-white/80">
-                From village kitchens to maternal care — see the impact your
-                support makes on the ground.
-              </p>
-              <Link to="/programs" className="mt-6 inline-block">
-                <Button
-                  variant="outline"
-                  className="border-white bg-white text-brand-600 hover:bg-brand-50"
-                >
-                  Explore Our Work
-                </Button>
-              </Link>
-            </div>
+          <div className="absolute inset-0 flex items-end justify-end bg-gradient-to-t from-ink/60 to-transparent p-4 sm:p-6">
+            <Link to="/programs">
+              <Button
+                variant="outline"
+                className="border-white bg-white text-brand-600 hover:bg-brand-50"
+              >
+                Explore Our Work
+              </Button>
+            </Link>
           </div>
         </div>
       </section>
