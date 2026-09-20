@@ -13,7 +13,7 @@
 <br>
 
 <p align="center">
-  <img src="docs/landing.jpg">
+  <img src="docs/landing.png">
 </p>
 
 Fight Malnutrition India connects donors, healthcare workers, and communities to combat malnutrition at scale. The platform delivers a modern donation portal, community program exploration, impact transparency reports, and a protected administrative dashboard for managing donations and analytics.
@@ -97,7 +97,7 @@ In-depth educational resources break down the nutritional gap, addressing micron
 Grassroots initiatives operate across thousands of villages to deliver sustainable nutrition.
 
 <p align="center">
-  <img src="docs/program-impact.jpg">
+  <img src="docs/program-impact.png">
 </p>
 
 Structured programs such as the Nourish India Program, Healthy Mothers Healthy Future, and Swachh Poshan Abhiyan drive measurable growth indicators and reduced anemia in high-priority districts.
